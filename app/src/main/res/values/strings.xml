@@ -152,6 +152,9 @@
     <string name="v25_line1">- Add more themeing functionality to settings</string>
     <string name="v25_line2">- Fixes to the way FAB works with wallpaper actions</string>
     <string name="v25_line3">- Added WIP grid changer</string>
+    <!-- Version 2.0.6 -->
+    <string name="v26_line1">- Moar under the hood changes</string>
+    <string name="v26_line2">- Moar translations (french/italian)</string>
 
     <!---DO NOT TRANSLATE-->
     <!---DO NOT TRANSLATE-->

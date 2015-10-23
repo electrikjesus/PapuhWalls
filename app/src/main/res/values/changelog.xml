@@ -2,12 +2,19 @@
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
 
     <string-array name="fullchangelog">
+        <item>@array/v26</item>
         <item>@array/v25</item>
         <item>@array/v24</item>
         <item>@array/v23</item>
         <item>@array/v22</item>
         <item>@array/v21</item>
         <item>@array/v2</item>
+    </string-array>
+
+    <string-array name="v26">
+        <item>V2.0.6</item>
+        <item>@string/v26_line1</item>
+        <item>@string/v26_line2</item>
     </string-array>
 
     <string-array name="v25">
