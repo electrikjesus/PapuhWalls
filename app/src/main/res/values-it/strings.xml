@@ -113,7 +113,10 @@
     <string name="v25_line1">- Aggiunte varie opzioni per il tema</string>
     <string name="v25_line2">- Fix vari per il FAB e il modo in cui gestisce le azioni sugli sfondi</string>
     <string name="v25_line3">- Aggiunta opzioni per cambiare la griglia (WIP)</string>
-
+    <!-- Version 2.0.6 -->
+    <string name="v26_line1">- Molti fix "under the hoods"</string>
+    <string name="v26_line2">- Aggiornate traduzioni (francese/italiano)</string>
+    
     <string name="artsource_desc">Assicura un look fantastico al tuo dispositivo!</string>
     <string name="muzei_settings">Impostazioni Muzei</string>
     <string name="github">SORGENTE</string>
