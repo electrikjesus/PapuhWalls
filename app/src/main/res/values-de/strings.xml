@@ -109,15 +109,17 @@
     <string name="disable_time_context_headers_summary">Deaktiviere zeitlich kontextbezogene Bilder</string>
     <string name="poly_time_context_headers">(Mehrere) kKontextbezogene Bilder</string>
     <string name="notify">Hintergrund Benachrichtigungen</string>
-    <string name="notify_content">Erhalte Benachrichtigungen wenn neue Hintergründe hinzugefügt wurden. \n\nPapuh/'s Benachrichtigungssystem abonnieren.</string>
+    <string name="notify_content">Erhalte Benachrichtigungen, wenn neue Hintergründe hinzugefügt wurden. \n\nPapuh\'s Benachrichtigungssystem abonnieren.</string>
     <string name="notify_note"><b>Achtung : Pushbullet ist nötig, um Benachrichtigungen erhalten zu können.</b></string>
     <string name="notify_url">https://goo.gl/fMw0tE</string>
     <string name="pushbullet_subscribe">ABONNIEREN</string>
     <string name="pushbullet_nothanks">NEIN DANKE</string>
-    <string name="grid_changer_column_one">1 Reihe</string>
-    <string name="grid_changer_column_two">2 Reihen</string>
-    <string name="grid_changer_column_three">3 Reihen</string>
-    <string name="grid_changer_column_four">4 Reihen</string>
+    <string name="grid_changer_column_one">1 Spalte</string>
+    <string name="grid_changer_column_two">2 Spalten</string>
+    <string name="grid_changer_column_three">3 Spalten</string>
+    <string name="grid_changer_column_four">4 Spalten</string>
+    <string name="grid_count_dialog_title">Anzahl Spalten</string>
+    <string name="grid_count_dialog_btn_positive">Ok</string>
 
     <string name="credit_wallpaper">Wallpaper hinzugefügt von</string>
 
@@ -210,5 +212,5 @@
     <!--- About Papuh -->
     <string name="credit_title">Ehre, wem Ehre gebührt...</string>
 
-    
+
 </resources>
