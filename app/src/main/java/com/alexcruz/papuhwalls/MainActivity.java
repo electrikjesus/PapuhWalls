@@ -830,7 +830,7 @@ public class MainActivity extends ActionBarActivity {
 
     private void showGrid() {
         new MaterialDialog.Builder(this)
-        .title("Grid Count")
+        .title(getString(R.string.grid_count_dialog_title))
         .items(R.array.column)
         .itemsCallbackSingleChoice(0, new MaterialDialog.ListCallbackSingleChoice() {
             @Override
@@ -845,7 +845,7 @@ public class MainActivity extends ActionBarActivity {
                 return true;
             }
         })
-        .positiveText("Set")
+        .positiveText(R.string.grid_count_dialog_btn_positive)
         .show();
     }
 
