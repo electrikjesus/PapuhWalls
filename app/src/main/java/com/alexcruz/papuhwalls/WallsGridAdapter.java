@@ -13,8 +13,6 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import static com.alexcruz.papuhwalls.Palette.PaletteCallback;
-
 import com.alexcruz.papuhwalls.Walls.AllWalls;
 import com.balysv.materialripple.MaterialRippleLayout;
 import com.squareup.picasso.Picasso;
@@ -22,6 +20,8 @@ import com.squareup.picasso.Picasso;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static com.alexcruz.papuhwalls.Palette.PaletteCallback;
 
 public class WallsGridAdapter extends BaseAdapter {
 

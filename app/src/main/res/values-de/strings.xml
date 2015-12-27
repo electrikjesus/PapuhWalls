@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+<resources>
 
     <!-- Main -->
     <string name="app_dev_name">by Alex Cruz</string>
@@ -50,7 +50,7 @@
     <string name="fourth_slide_description">Alle Beiträge werden akzeptiert!\n\nKlein oder groß, es kommt der Community zu gunsten! Deshalb wird diese App immer gratis und open-source sein!</string>
     <string name="last_slide_title">Das war\'s!</string>
     <string name="last_slide_description">Viel spaß mit der App :-)</string>
-    <string name="customactivityoncrash_error_activity_error_occurred_explanation">UPS!!\n\nAlex muss auf dem Computer\neingeschlafen sein!\nLasse Ihn teilhaben!</string>
+    <string name="customactivityoncrash_error_activity_error_occurred_explanation">UPS!!\n\nAlex muss auf dem Computer\neingeschlafen sein!\nBerichte ihm den Fehler!</string>
     <string name="customactivityoncrash_error_activity_restart_app">Papuh neu starten</string>
     <string name="customactivityoncrash_error_activity_error_details">Fehler Info</string>
     <string name="customactivityoncrash_error_activity_error_details_title">Fehler Info</string>
@@ -206,11 +206,33 @@
     <string name="muzeisets_title">Quelle aktualisieren, alle:</string>
     <string name="minutes">Minuten</string>
     <string name="hours">Stunden</string>
-    <string name="muzei_info">RICHTE EINE MUZEI QUELLE EIN UM ALLES ZU SPEICHERN!!</string>
+    <string name="muzei_info">RICHTE EINE MUZEI QUELLE EIN, UM ALLES ZU SPEICHERN!!</string>
     <string name="justshare">Teilen</string>
 
     <!--- About Papuh -->
     <string name="credit_title">Ehre, wem Ehre gebührt...</string>
 
+    <!-- Live Wall -->
+    <string name="addToLiveWallList">Zum Live-Hintergrund Pool hinzufügen</string>
+    <string name="remFromLiveWallList">Vom Live-Hintergrund Pool entfernen</string>
+    <string name="live_wallpaper_description">Papuh Live</string>
+    <string name="live_wall_update_interval">Aktualisierungs-Intervall</string>
+    <string name="live_wall_pool_update_success">Der Live-Hintergund Pool wurde erfolgreich aktualisiert</string>
+    <string name="live_wallpaper_settings">Papuh Live Einstellungen</string>
+    <string name="interval_minutes">Minuten</string>
+    <string name="interval_minute">Minute</string>
+    <string name="interval_hours">Stunden</string>
+    <string name="interval_hour">Stunde</string>
+    <string name="my_walls_title">Meine Hintergründe</string>
+    <string name="confirm_action">Bestätigen</string>
+    <string name="del_walls_message_1">Willst du</string>
+    <string name="del_walls_message_2">Hintergrund/Hintergründe vom Live-Hintergrund Pool entfernen?</string>
+    <string name="no_item_deselected">Keine Hintergründe zum Entfernen abgewählt</string>
+    <string name="no_walls">Keine Hintergründe im Live-Hintergrund Pool</string>
+    <string name="how_to_lw_title">Wie funktioniert\'s?</string>
+    <string name="how_to_lw">Wechsle zum Hauptmenü von Papuh und wähle eine Hintergrund-Kategorie. Wähle danach einen Hintergrund aus, der dir gefällt und wähle</string>
+    <string name="how_to_try">Versuchen</string>
+    <string name="walls_count">Hintergründe zum Live-Hintergrund Pool hinzugefügt</string>
+    <string name="theme_fab_addLW">Live-Hintergrund Pool Taste</string>
 
 </resources>

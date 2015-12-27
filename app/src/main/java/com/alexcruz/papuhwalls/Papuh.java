@@ -1,8 +1,8 @@
 package com.alexcruz.papuhwalls;
 
-import android.support.v7.app.ActionBarActivity;
-import android.os.Bundle;
 import android.content.Intent;
+import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 
 import com.alexcruz.papuhwalls.Walls.AbsWalls;
 

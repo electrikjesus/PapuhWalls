@@ -1,22 +1,23 @@
 package com.alexcruz.papuhwalls;
 
 import android.Manifest;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.content.IntentCompat;
 import android.support.v4.content.PermissionChecker;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
@@ -39,9 +40,20 @@ import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.SectionDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IProfile;
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.Response;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
 
 import cat.ereza.customactivityoncrash.CustomActivityOnCrash;
 import de.psdev.licensesdialog.LicensesDialog;
@@ -49,6 +61,8 @@ import de.psdev.licensesdialog.licenses.ApacheSoftwareLicense20;
 import de.psdev.licensesdialog.licenses.License;
 import de.psdev.licensesdialog.licenses.MITLicense;
 import de.psdev.licensesdialog.model.Notice;
+import okio.BufferedSink;
+import okio.Okio;
 
 public class MainActivity extends ActionBarActivity {
 
@@ -82,13 +96,13 @@ public class MainActivity extends ActionBarActivity {
     private String TwistedAOSPWalls;
     private String ValidusWalls;
     private String Settings;
+    private String LiveWallpaper;
     private String MuzeiSettings;
     private String AboutApp;
 
     private Drawer result = null;
     private AccountHeader headerResult = null;
     public int currentItem;
-    private Preferences mPrefs;
     private Context context;
     private SharedPreferences prefs;
 
@@ -114,7 +128,6 @@ public class MainActivity extends ActionBarActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         context = this;
-        mPrefs = new Preferences(MainActivity.this);
         CustomActivityOnCrash.install(this);
 
         prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
@@ -132,7 +145,7 @@ public class MainActivity extends ActionBarActivity {
             // Do absolutely NOTHING
         }
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -170,6 +183,7 @@ public class MainActivity extends ActionBarActivity {
         TwistedAOSPWalls = getResources().getString(R.string.section_twistedaosp_walls);
         ValidusWalls = getResources().getString(R.string.section_validus_walls);
         Settings = getResources().getString(R.string.settings);
+        LiveWallpaper = getResources().getString(R.string.live_wallpaper_description);
         MuzeiSettings = getResources().getString(R.string.muzei_settings);
         AboutApp = getResources().getString(R.string.section_aboutapp);
 
@@ -309,6 +323,7 @@ public class MainActivity extends ActionBarActivity {
                         new PrimaryDrawerItem().withName(ValidusWalls).withIcon(R.drawable.ic_validus).withIconTintingEnabled(true).withSelectedIconColor(Preferences.SelectedIcon()).withIconColor(Preferences.NormalIcon()).withSelectedTextColor(tint(Preferences.SelectedDrawerText(), 1.0)).withSelectedColor(tint(Preferences.DrawerSelector(), 1.0)).withTextColor(Preferences.DrawerText()).withIdentifier(29).withBadge("258+").withBadgeStyle(new BadgeStyle().withTextColor(Preferences.BadgeText()).withColor(Preferences.BadgeBackground())),
                         new DividerDrawerItem(),
                         new SecondaryDrawerItem().withName(Settings).withIcon(R.drawable.ic_settings).withIconTintingEnabled(true).withSelectedIconColor(Preferences.SelectedIcon()).withIconColor(Preferences.NormalIcon()).withSelectedTextColor(tint(Preferences.SelectedDrawerText(), 1.0)).withSelectedColor(tint(Preferences.DrawerSelector(), 1.0)).withTextColor(Preferences.DrawerText()).withIdentifier(30),
+                        new SecondaryDrawerItem().withName(LiveWallpaper).withIcon(R.drawable.ic_device_now_wallpaper).withIconTintingEnabled(true).withSelectedIconColor(Preferences.SelectedIcon()).withIconColor(Preferences.NormalIcon()).withSelectedTextColor(tint(Preferences.SelectedDrawerText(), 1.0)).withSelectedColor(tint(Preferences.DrawerSelector(), 1.0)).withTextColor(Preferences.DrawerText()).withIdentifier(33),
                         new SecondaryDrawerItem().withName(MuzeiSettings).withIcon(R.drawable.ic_muzei).withIconTintingEnabled(true).withSelectedIconColor(Preferences.SelectedIcon()).withIconColor(Preferences.NormalIcon()).withSelectedTextColor(tint(Preferences.SelectedDrawerText(), 1.0)).withSelectedColor(tint(Preferences.DrawerSelector(), 1.0)).withTextColor(Preferences.DrawerText()).withIdentifier(31),
                         new SecondaryDrawerItem().withName(AboutApp).withIcon(R.drawable.ic_about).withIconTintingEnabled(true).withSelectedIconColor(Preferences.SelectedIcon()).withIconColor(Preferences.NormalIcon()).withSelectedTextColor(tint(Preferences.SelectedDrawerText(), 1.0)).withSelectedColor(tint(Preferences.DrawerSelector(), 1.0)).withTextColor(Preferences.DrawerText()).withIdentifier(32)
                 )
@@ -329,10 +344,9 @@ public class MainActivity extends ActionBarActivity {
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
-                        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-                        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
-                        boolean isConnected = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
+
                         boolean isMuzeiInstalled = Preferences.isAppInstalled(context, "net.nurik.roman.muzei");
+                        boolean isConnected = isConnected(MainActivity.this);
 
                         if (drawerItem != null) {
                             switch (drawerItem.getIdentifier()) {
@@ -547,6 +561,10 @@ public class MainActivity extends ActionBarActivity {
                                 case 32:
                                     switchFragment(32, AboutApp, "Credits");
                                     break;
+                                case 33:
+                                    Intent LWIntent = new Intent(MainActivity.this, com.alexcruz.papuhwalls.Live.Settings.class);
+                                    startActivityForResult(LWIntent, 0);
+                                    break;
                             }
                         }
 
@@ -569,7 +587,126 @@ public class MainActivity extends ActionBarActivity {
         } else {
             // Do absolutely NOTHING
         }
+
+        if(Preferences.getLiveWalls().size() == 0 & isConnected(this))
+            new SetupLW(this).execute();
     }
+
+    /*
+        Download 3 random Papuh Walls and add it to the live wallpaper pool
+     */
+    public static class SetupLW extends AsyncTask<Void, Void, Void> {
+
+        private ArrayList<Map<String, String>> arraylist;
+        private Context context;
+
+        public SetupLW(Context context){
+            this.context = context;
+        }
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            arraylist = new ArrayList<>();
+            JSONObject json = JSONParser.getJSONfromURL("https://raw.githubusercontent.com/DirtyUnicorns/Papuh-Resources/master/papuh_wallpapers.json");
+            if (json != null) try {
+                JSONArray jsonarray = json.getJSONArray("papuh_walls");
+                int range = jsonarray.length();
+
+                Random random = new Random();
+                int index = random.nextInt(range);
+
+                for (int i = 0; i < 3; i++) {
+                    HashMap<String, String> map = new HashMap<>();
+                    json = jsonarray.getJSONObject(index);
+                    map.put("name", json.getString("name"));
+                    map.put("author", json.getString("author"));
+                    map.put("wall", json.getString("url"));
+                    arraylist.add(map);
+                    index = random.nextInt(range);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            for(int i = 0; i < arraylist.size(); i++) {
+                String wall = arraylist.get(i).get("wall");
+                final String wallName = WallsFragment.convertWallName(wall);
+                final File destLiveWallFile = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + context.getResources().getString(R.string.walls_save_location) + "/" + context.getResources().getString(R.string.live_walls_prefix_name) + wallName + ".png");
+                new DownloadBitmap(context, wall, destLiveWallFile).execute();
+            }
+        }
+    }
+
+    private static class DownloadBitmap extends AsyncTask<Void, Void, Uri> {
+
+        private Context context;
+        private String url;
+        private File dest;
+
+        public DownloadBitmap(Context context, String url, File dest) {
+            this.url = url;
+            this.dest = dest;
+            this.context = context;
+        }
+
+        @Override
+        protected Uri doInBackground(Void... params) {
+
+            try {
+
+                dest.getParentFile().mkdirs();
+
+                int i = 0;
+
+                //We're trying to download file 5 times
+                while (i < 5) {
+                    i++;
+
+                    BitmapFactory.Options options = new BitmapFactory.Options();
+                    options.inJustDecodeBounds = true;
+
+                    BitmapFactory.decodeFile(dest.getPath(), options);
+
+                    if (options.outWidth > 0 && options.outHeight > 0) {
+                        return Uri.fromFile(dest);
+                    } else {
+                        dest.delete();
+                    }
+
+                    OkHttpClient client = new OkHttpClient();
+
+                    Request request = new Request.Builder().url(url).get().build();
+
+                    Response response = client.newCall(request).execute();
+
+                    BufferedSink sink = Okio.buffer(Okio.sink(dest));
+                    sink.writeAll(response.body().source());
+                    sink.close();
+
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Uri uri) {
+            if (uri != null) {
+                WallsFragment.scan(context, "external");
+            }
+        }
+    }
+
 
     public static int tint(int color, double factor) {
         int a = Color.alpha(color);
@@ -836,7 +973,7 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public boolean onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
 
-                AbsWalls.numColumns = which+1;
+                AbsWalls.numColumns = which + 1;
                 refreshGridView();
                 /**
                  * If you use alwaysCallSingleChoiceCallback(), which is discussed below,
@@ -879,5 +1016,11 @@ public class MainActivity extends ActionBarActivity {
                 .withStyle(SnackBar.Style.ALERT)
                 .withDuration(SnackBar.MED_SNACK)
                 .show();
+    }
+
+    public static boolean isConnected(Context context){
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        return activeNetwork != null && activeNetwork.isConnectedOrConnecting();
     }
 }

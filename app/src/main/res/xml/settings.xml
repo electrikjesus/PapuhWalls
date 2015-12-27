@@ -146,6 +146,12 @@
             app:supportsAlpha="true"/>
 
         <yuku.ambilwarna.widget.AmbilWarnaPreferenceThemeable
+            android:key="FABaddLW"
+            android:title="@string/theme_fab_addLW"
+            android:defaultValue="@color/add_lw_color"
+            app:supportsAlpha="true"/>
+
+        <yuku.ambilwarna.widget.AmbilWarnaPreferenceThemeable
             android:key="FABcrop"
             android:title="@string/theme_fab_crop"
             android:defaultValue="@color/crop_color"
