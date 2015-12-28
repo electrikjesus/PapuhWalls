@@ -29,10 +29,10 @@ import android.util.AttributeSet;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.alexcruz.papuhwalls.R;
+
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
-
-import com.alexcruz.papuhwalls.R;
 
 public class FloatingActionButton extends ImageButton {
 

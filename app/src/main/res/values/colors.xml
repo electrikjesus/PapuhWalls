@@ -28,6 +28,7 @@
     <color name="share_color">#8148c2</color>
     <color name="crop_color">#44B3C2</color>
     <color name="save_color">#F1A94E</color>
+    <color name="add_lw_color">#E91E63</color>
     <color name="apply_color">#E45641</color>
     <color name="credits_text">#a93531</color>
     <color name="md_background_color">#151515</color>

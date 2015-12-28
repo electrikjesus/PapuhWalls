@@ -40,7 +40,7 @@ public class WallsFragment extends ActionBarActivity {
 
     private Toolbar toolbar;
     public String wall;
-    private String saveWallLocation, picName, dialogContent;
+    private String saveWallLocation, picName, livePicName, dialogContent;
     private File destWallFile;
     private View fabBg;
     private Activity context;
@@ -49,6 +49,7 @@ public class WallsFragment extends ActionBarActivity {
     private FloatingActionsMenu fab;
 
     private static final int ACTIVITY_SHARE = 13452;
+    private boolean isAddedToLWList = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +74,7 @@ public class WallsFragment extends ActionBarActivity {
 
         saveWallLocation = Environment.getExternalStorageDirectory().getAbsolutePath() + context.getResources().getString(R.string.walls_save_location);
         picName = context.getResources().getString(R.string.walls_prefix_name);
+        livePicName = context.getResources().getString(R.string.live_walls_prefix_name);
 
         dialogContent = getResources().getString(R.string.download_done) + " " + saveWallLocation;
 
@@ -223,6 +225,60 @@ public class WallsFragment extends ActionBarActivity {
             }
         });
 
+        final String wallName = convertWallName(wall);
+        final File destLiveWallFile = new File(saveWallLocation + "/" + livePicName + wallName + ".png");
+        final FloatingActionButton addToLW = (FloatingActionButton) findViewById(R.id.addToLW);
+
+        isAddedToLWList = Preferences.isWallAddedToLWList(destLiveWallFile.getAbsolutePath());
+        if(isAddedToLWList)
+            addToLW.setTitle(getString(R.string.remFromLiveWallList));
+
+        addToLW.setColorNormal(Preferences.FABaddLW());
+        addToLW.setColorPressed(Preferences.FABpressed());
+        addToLW.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if(!isAddedToLWList) {
+                    fab.collapse();
+
+                    new DownloadBitmap(context, wall, destLiveWallFile, new Callback<Uri>() {
+                    @Override
+                    public void callback(Uri object) {
+
+                        addToLW.setTitle(getString(R.string.remFromLiveWallList));
+
+                        isAddedToLWList = !isAddedToLWList;
+
+                        new SnackBar.Builder(context)
+                                .withMessageId(R.string.live_wall_pool_update_success)
+                                .withActionMessageId(R.string.ok)
+                                .withStyle(SnackBar.Style.ALERT)
+                                .withDuration(SnackBar.SHORT_SNACK)
+                                .show();
+                    }
+                }, false).execute();
+
+                }
+                // otherwise remove it from the pool and delete the wall from the sdcard
+                else {
+                    if(destLiveWallFile.exists())
+                        destLiveWallFile.delete();
+                    addToLW.setTitle(getString(R.string.addToLiveWallList));
+
+                    fab.collapse();
+
+                    new SnackBar.Builder(context)
+                            .withMessageId(R.string.live_wall_pool_update_success)
+                            .withActionMessageId(R.string.ok)
+                            .withStyle(SnackBar.Style.ALERT)
+                            .withDuration(SnackBar.SHORT_SNACK)
+                            .show();
+                }
+
+            }
+        });
+
         final FloatingActionButton cropWall = (FloatingActionButton) findViewById(R.id.cropwall);
         cropWall.setColorNormal(Preferences.FABcrop());
         cropWall.setColorPressed(Preferences.FABpressed());
@@ -299,7 +355,7 @@ public class WallsFragment extends ActionBarActivity {
 
     }
 
-    private String convertWallName(String link) {
+    public static String convertWallName(String link) {
         return (link
                 .replaceAll("png", "")
                 .replaceAll("jpg", "")
@@ -321,7 +377,7 @@ public class WallsFragment extends ActionBarActivity {
         setFullScreen();
     }
 
-    private static void scan(Context context, String volume) {
+    public static void scan(Context context, String volume) {
         Bundle args = new Bundle();
         args.putString("volume", volume);
         context.startService(

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+<resources>
 
     <!-- Main -->
     <string name="app_name" translatable="false">Papuh</string>
@@ -193,6 +193,7 @@
     <!-- License check / Dialog / Muzei -->
     <string name="walls_save_location" translatable="false">/Papuh/Wallpapers/</string>
     <string name="walls_prefix_name" translatable="false">Papuh_</string>
+    <string name="live_walls_prefix_name" translatable="false">PapuhLive_</string>
     <string name="artsource_name" translatable="false">Papuh Walls</string>
     <string name="artsource_desc">Keeping your device looking awesome!</string>
     <string name="muzei_settings">Muzei Settings</string>
@@ -358,5 +359,28 @@
         LicensesDialog is an open source library to display licenses of third-party libraries in an Android app
         ]]></string>
     <string name="licensesdialog_web" translatable="false">https://github.com/PSDev/LicensesDialog</string>
+
+    <!-- Live Wall -->
+    <string name="addToLiveWallList">Add to the live wallpaper pool</string>
+    <string name="remFromLiveWallList">Remove from the live wallpaper pool</string>
+    <string name="live_wallpaper_description">Papuh Live</string>
+    <string name="live_wall_update_interval">Update interval</string>
+    <string name="live_wall_pool_update_success">Successfully updated the live wallpapers pool</string>
+    <string name="live_wallpaper_settings">Papuh Live Settings</string>
+    <string name="interval_minutes">minutes</string>
+    <string name="interval_minute">minute</string>
+    <string name="interval_hours">hours</string>
+    <string name="interval_hour">hour</string>
+    <string name="my_walls_title">My walls</string>
+    <string name="confirm_action">Confirm</string>
+    <string name="del_walls_message_1">Do you want to remove</string>  <!-- Like "Do you want to remove 5 wall(s) from the live wallpaper pool?" -->
+    <string name="del_walls_message_2">wall(s) from the live wallpaper pool?</string>  <!-- Like "Do you want to remove 5 wall(s) from the live wallpaper pool?" -->
+    <string name="no_item_deselected">No walls deselected</string>
+    <string name="no_walls">No walls added to live wallpaper pool</string>
+    <string name="how_to_lw_title">How to?</string>
+    <string name="how_to_lw">Switch to the main screen of Papuh and choose a category. Then choose a wall you like and select</string>  <!-- Programmatically it will be "Then choose a wall you like and select 'Add to live wallpaper pool'" later -->
+    <string name="how_to_try">Try</string>
+    <string name="walls_count">walls added to the live wallpaper pool</string> <!-- Like "5 walls added to the live wallpaper pool" -->
+    <string name="theme_fab_addLW">Add to live wall pool Button</string>
 
 </resources>

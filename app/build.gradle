@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     useLibrary 'org.apache.http.legacy'
     compileSdkVersion 23
-    buildToolsVersion '23.0.0'
+    buildToolsVersion '23.0.2'
 
     defaultConfig {
         applicationId "com.alexcruz.papuhwalls"
@@ -31,7 +31,9 @@ dependencies {
     compile 'com.android.support:support-v4:23.0.0'
     compile 'com.android.support:palette-v7:23.0.0'
 //Material Dialogs Library
-    compile 'com.afollestad:material-dialogs:0.6.6.1'
+    compile('com.github.afollestad.material-dialogs:core:0.8.5.2@aar') {
+        transitive = true
+    }
 //Material Drawer Library
     compile 'com.mikepenz:google-material-typeface:1.2.0.1@aar'
     compile 'com.mikepenz:fontawesome-typeface:4.4.0.1@aar'
@@ -64,4 +66,6 @@ dependencies {
     compile 'com.github.yukuku:ambilwarna:2.0.1'
 // Pinch to Zoom Library
     compile 'com.commit451:PhotoView:1.2.4'
+// Convert list to json and reverse
+    compile 'com.google.code.gson:gson:1.7.2'
 }

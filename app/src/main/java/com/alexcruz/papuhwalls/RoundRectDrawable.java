@@ -9,8 +9,8 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 
-import static com.alexcruz.papuhwalls.RoundRectDrawableWithShadow.calculateVerticalPadding;
 import static com.alexcruz.papuhwalls.RoundRectDrawableWithShadow.calculateHorizontalPadding;
+import static com.alexcruz.papuhwalls.RoundRectDrawableWithShadow.calculateVerticalPadding;
 
 /**
  * Very simple drawable that draws a rounded rectangle background with arbitrary corners and also

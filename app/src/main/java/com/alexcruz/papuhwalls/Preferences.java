@@ -6,8 +6,12 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Build;
+import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.support.v7.widget.Toolbar;
+
+import java.io.File;
+import java.util.ArrayList;
 
 public class Preferences {
 
@@ -30,6 +34,7 @@ public class Preferences {
     public static final String BadgeText = "BadgeText";
     public static final String FABapply = "FABapply";
     public static final String FABsave = "FABsave";
+    public static final String FABaddLW = "FABaddLW";
     public static final String FABcrop = "FABcrop";
     public static final String FABedit = "FABedit";
     public static final String FABshare = "FABshare";
@@ -37,6 +42,10 @@ public class Preferences {
     public static final String FABbackground = "FABbackground";
     public static final String NormalIcon = "NormalIcon";
     public static final String SelectedIcon = "SelectedIcon";
+    public static final String LWinterval = "LWinterval";
+
+    private static final int defaultUpdateInterval = 300;
+    public static final int pendingIntentUnique = 0107621;
 
     public int Theme() {
         return sharedPreferences.getInt(Theme, context.getResources().getColor(R.color.primary));
@@ -110,6 +119,10 @@ public class Preferences {
         return sharedPreferences.getInt(FABsave, context.getResources().getColor(R.color.save_color));
     }
 
+    public int FABaddLW() {
+        return sharedPreferences.getInt(FABaddLW, context.getResources().getColor(R.color.add_lw_color));
+    }
+
     public int FABcrop() {
         return sharedPreferences.getInt(FABcrop, context.getResources().getColor(R.color.crop_color));
     }
@@ -128,6 +141,10 @@ public class Preferences {
 
     public int FABbackground() {
         return sharedPreferences.getInt(FABbackground, context.getResources().getColor(R.color.black_semi_transparent));
+    }
+
+    public int LWinterval() {
+        return getSharedPreferences().getInt(LWinterval, defaultUpdateInterval);
     }
 
     String wall_name, wall_author, wall_url;
@@ -187,6 +204,10 @@ public class Preferences {
         getSharedPreferences().edit().putBoolean(ROTATE_MINUTE, bool).apply();
     }
 
+    public void setLWUpdateInterval(int seconds){
+        getSharedPreferences().edit().putInt(LWinterval, seconds).apply();
+    }
+
     public static boolean isAppInstalled(Context context, String packageName) {
         try {
             context.getPackageManager().getApplicationInfo(packageName, 0);
@@ -218,6 +239,7 @@ public class Preferences {
                 .putInt(BadgeText, context.getResources().getColor(R.color.white))
                 .putInt(FABapply, context.getResources().getColor(R.color.apply_color))
                 .putInt(FABsave, context.getResources().getColor(R.color.save_color))
+                .putInt(FABaddLW, context.getResources().getColor(R.color.add_lw_color))
                 .putInt(FABcrop, context.getResources().getColor(R.color.crop_color))
                 .putInt(FABedit, context.getResources().getColor(R.color.edit_color))
                 .putInt(FABshare, context.getResources().getColor(R.color.share_color))
@@ -254,10 +276,7 @@ public class Preferences {
                 activity.getWindow().setStatusBarColor(preferences.Theme());
             }
         }
-
-
     }
-
 
     public static int tint(int color, double factor) {
         int a = Color.alpha(color);
@@ -266,6 +285,22 @@ public class Preferences {
         int b = Color.blue(color);
 
         return Color.argb(a, Math.max((int) (r * factor), 0), Math.max((int) (g * factor), 0), Math.max((int) (b * factor), 0));
+    }
+
+    public ArrayList<String> getLiveWalls() {
+        File saveWallLoc = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + context.getResources().getString(R.string.walls_save_location));
+        ArrayList<String> liveWalls = new ArrayList<>();
+        File file[] = saveWallLoc.listFiles();
+        for (File wall : file) {
+            if(wall.getName().startsWith("PapuhLive")){
+                liveWalls.add(wall.getAbsolutePath());
+            }
+        }
+        return liveWalls;
+    }
+
+    public boolean isWallAddedToLWList(String wall){
+        return getLiveWalls().contains(wall);
     }
 
 
