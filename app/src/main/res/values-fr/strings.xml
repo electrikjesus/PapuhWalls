@@ -5,7 +5,7 @@
     <string name="app_dev_name">par Alex Cruz</string>
     <string name="gplus_join">REJOINDRE</string>
     <string name="ratebtn">ÉVALUER</string>
-    <string name="description">Papuh a été créé par Alex Cruz, non seulement pour regrouper tous ses fonds d\'écran, mais aussi pour que les utilisateurs puissent les mettre à jour facilement. Cette application a été développée en utilisant des bibliothèques et des contributions open source.</string>
+    <string name="description">Papuh a été créé par Alex Cruz, non seulement pour regrouper tous ses fonds d\'écran, mais aussi pour que les utilisateurs puissent les mettre à jour facilement. Cette application a été développée en utilisant des bibliothèques et des contributions "\open source\".</string>
     <string name="play_card_title">Papuh Walls sur Google+</string>    
     <string name="play_card_content">Rejoignez la communauté Papuh Walls pour aider et partager.</string>
     <string name="section_home">Accueil</string>
@@ -49,7 +49,7 @@
     <string name="fourth_slide_description">Toutes les contributions sont acceptées !\n\nPetite ou grande, tout n\'est qu\'une histoire de communauté ! Cette application sera toujours gratuite, et "\open source\" !</string>
     <string name="last_slide_title">C\'est tout !</string>
     <string name="last_slide_description">Profitez bien de l\'application :-)</string>
-    <string name="customactivityoncrash_error_activity_error_occurred_explanation">OH MINCE !!\n\nAlex doit s\'être à nouveau endormi sur son ordinateur !\nLaissons-le se reposer !"</string>    
+    <string name="customactivityoncrash_error_activity_error_occurred_explanation">OH MINCE !!\n\nAlex doit s\'être à nouveau endormi sur son ordinateur !\nLaissons-le se reposer !</string>    
     <string name="customactivityoncrash_error_activity_restart_app">Redémarrer Papuh</string>
     <string name="customactivityoncrash_error_activity_error_details_title">Informations erreur</string>    
     <string name="customactivityoncrash_error_activity_error_details">Informations sur l\'erreur</string>
@@ -147,7 +147,7 @@
     <string name="v25_line2">- Correctif du fonctionnement entre le bouton d\'action et les fonds d\'écran</string>
     <string name="v25_line3">- Ajout du redimensionnement de la grille</string>
     <!-- Version 2.0.6 -->
-    <string name="v26_line1">- Modifications diverses</string>
+    <string name="v26_line1">- Optimisations diverses</string>
     <string name="v26_line2">- Traductions (français/italien)</string>
     
     <!-- License check / Dialog / Muzei -->  
@@ -175,7 +175,7 @@
     <string name="json_error_toast">Une erreur est survenue pendant le téléchargement des informations du fond d\'écran. Réessayez plus tard.</string>
     <string name="share_wall">Partager le fond d\'écran</string>
     <string name="partone">"Mon fond d\'écran pour aujourd\'hui est "</string>
-    <string name="parttwo">" par" </string>
+    <string name="parttwo">" par "</string>
     <string name="partthree">" de "</string>
     <string name="partfour">!\n\n</string>   
     <string name="partfive">" Téléchargez-le sur "</string>
@@ -201,7 +201,7 @@
     <string name="exit">Quitter</string>
     <string name="get_app_button">Obtenir l\'application</string>
     <string name="installed">Installé</string>
-    <string name="noninstalled">Non-installé</string>
+    <string name="noninstalled">Non installé</string>
     <string name="muzeisets_title">Actualiser toutes les :</string>    
     <string name="minutes">Minutes</string>
     <string name="hours">Heures</string>  
@@ -209,100 +209,100 @@
     <string name="justshare">Partager</string>    
 
     <!--- About Papuh -->
-    <string name="credit_title">Credit where is due...</string>
+    <string name="credit_title">Attribution des crédits à...</string>
     <string name="credit_desc">
         <![CDATA[
-        The dashboard app linked under <b>SOURCE</b> was used as a base for this app and developed by <b>Jahir Fiquitiva</b>
-        :" Graphic Design and Android Development enthusiast.<br><br>Official collaborators: Aidan Follestad and Joaquin Cuitiño.<br><br>
+        Le dashboard sous le lien <b>SOURCE</b> a été utilisé comme base pour cette application et développé par <b>Jahir Fiquitiva</b> 
+        :" passionné de création graphique et de développement Android.<br><br>Collaborateurs officiels : Aidan Follestad et Joaquin Cuitiño.<br><br>
 
-        Since then <b>A LOT</b> of work by <b>Alex Cruz</b> has gone into this app to make it something more then just a fork
+        Depuis <b>BEAUCOUP</b> de travail a été effectué dans cette application par <b>Alex Cruz</b> pour en faire autre chose qu\'un simple dérivé.
         ]]>
 
     </string>
 
-    <string name="copyright">Licensed under MIT License.</string>
-    <string name="apache_license">Licensed under Apache 2.0 License.</string>
-    <string name="mit_license">Licensed under MIT License.</string>
+    <string name="copyright">Publié sous licence MIT.</string>
+    <string name="apache_license">Publié sous licence Apache 2.0.</string>
+    <string name="mit_license">Publié sous licence MIT.</string>
 
-    <string name="libs_section_title">Free &amp; Open Sourced libraries used:</string>
+    <string name="libs_section_title">Bibliothèques FOSS utilisées :</string>
 
     <string name="fab_desc">
 		<![CDATA[
-        <b>Floating Action Button</b> is yet another library for drawing Material Design promoted actions.
+        <b>Floating Action Button</b> est une bibliothèque Material Design pour le bouton d\'action.
         ]]></string>
 
     <string name="materialdialogs_desc">
 		<![CDATA[
-        <b>Material Dialogs</b> is a beautiful, "easy to use" and customizable dialogs API, to use Material design themed dialogs across all version of Android.
+        <b>Material Dialogs</b> est une API superbe, facile à utiliser, personnalisable et permettant une intégration du Material Design dans toutes les versions d\'Android.
         ]]></string>
 
     <string name="materialdrawer_desc">
         <![CDATA[
-        The <b>MaterialDrawer</b> library aims to provide the easiest possible implementation of a navigation drawer for your application.
+        La bibliothèque <b>MaterialDrawer</b> a pour objectif de fournir la meilleure intégration du volet de navigation pour votre application.
         ]]>
     </string>
 
     <string name="picasso_desc">
         <![CDATA[
-        <b>Picasso</b> is a powerful image downloading and caching library for Android.
+        <b>Picasso</b> est une bibliothèque puissante de téléchargement et de mise en cache d\'image pour Android.
         ]]></string>
 
     <string name="okhttp_desc">
         <![CDATA[
-        <b>OkHttp</b> is an HTTP and SPDY client for Android and Java applications.
+        <b>OkHttp</b> est un client HTTP et SPDY pour applications Android et Java.
         ]]></string>
  
     <string name="snackbar_desc">
         <![CDATA[
-        <b>SnackBar</b> toast-like alert pattern for Android inspired by the Google Material Design Spec
+        <b>SnackBar</b> est un modèle de notification toast d\'Android inspiré des spécifications du Material Design de Google.
         ]]></string>
 
     <string name="crash_desc">
         <![CDATA[
-        Android library that allows launching a custom activity when your app crashes, instead of showing the hated "Unfortunately, X has stopped" dialog.
+        Bibliothèque Android permettant de démarrer une activité lors du plantage de votre application, au lieu d\'afficher l\'horrible fenêtre de dialogue \"Malheureusement X s\'est arrêté\".
         ]]></string>
 
     <string name="appintro_desc">
         <![CDATA[
-        Android Library to make a cool intro for your app.
+        Bibliothèque Android permettant de faire une jolie introduction pour votre application.
         ]]></string>
 
     <string name="materialripple_desc">
         <![CDATA[
-        Ripple effect wrapper for Android Views
+        Bibliothèque Android permettant un effet vague pour Android Views.
         ]]></string>
 
     <string name="materialpreference_desc">
         <![CDATA[
-        A simple backward-compatible implementation of a Material Design Preference aka settings item
+        Intégration simple du Material Design dans les paramètres pour toutes les versions d\'Android.
         ]]></string>
 
     <string name="licensesdialog_desc">
         <![CDATA[
-        LicensesDialog is an open source library to display licenses of third-party libraries in an Android app
+        LicensesDialog est une bibliothèque open source pour afficher les licences des bibliothèques tierces dans une application Android.
         ]]></string>
     
     <!-- Live Wall -->
-    <string name="addToLiveWallList">Add to the live wallpaper pool</string>
-    <string name="remFromLiveWallList">Remove from the live wallpaper pool</string>
+    <string name="addToLiveWallList">Ajouter au fond d\'écran animé</string>
+    <string name="remFromLiveWallList">Retirer du fond d\'écran animé</string>
     <string name="live_wallpaper_description">Papuh Live</string>
-    <string name="live_wall_update_interval">Update interval</string>
-    <string name="live_wall_pool_update_success">Successfully updated the live wallpapers pool</string>
-    <string name="live_wallpaper_settings">Papuh Live Settings</string>
+    <string name="live_wall_update_interval">Intervalle d\'actualisation</string>
+    <string name="live_wall_pool_update_success">Fonds d'écran animés actualisés avec succès</string>
+    <string name="live_wallpaper_settings">Paramètres Papuh Live</string>
     <string name="interval_minutes">minutes</string>
     <string name="interval_minute">minute</string>
-    <string name="interval_hours">hours</string>
-    <string name="interval_hour">hour</string>
-    <string name="my_walls_title">My walls</string>
-    <string name="confirm_action">Confirm</string>
-    <string name="del_walls_message_1">Do you want to remove</string>  <!-- Like "Do you want to remove 5 wall(s) from the live wallpaper pool?" -->
-    <string name="del_walls_message_2">wall(s) from the live wallpaper pool?</string>  <!-- Like "Do you want to remove 5 wall(s) from the live wallpaper pool?" -->
-    <string name="no_item_deselected">No walls deselected</string>
-    <string name="no_walls">No walls added to live wallpaper pool</string>
-    <string name="how_to_lw_title">How to?</string>
-    <string name="how_to_lw">Switch to the main screen of Papuh and choose a category. Then choose a wall you like and select</string>  <!-- Programmatically it will be "Then choose a wall you like and select 'Add to live wallpaper pool'" later -->
-    <string name="how_to_try">Try</string>
-    <string name="walls_count">walls added to the live wallpaper pool</string> <!-- Like "5 walls added to the live wallpaper pool" -->
-    <string name="theme_fab_addLW">Add to live wall pool Button</string>
+    <string name="interval_hours">heures</string>
+    <string name="interval_hour">heure</string>
+    <string name="my_walls_title">Mes fonds d\'écran</string>
+    <string name="confirm_action">Confirmer</string>
+    <string name="del_walls_message_1">Voulez-vous retirer</string>  <!-- Like "Do you want to remove 5 wall(s) from the live wallpaper pool?" -->
+    <string name="del_walls_message_2">fond(s) d\'écran du fond d\'écran animé ?</string>  <!-- Like "Do you want to remove 5 wall(s) from the live wallpaper pool?" -->
+    <string name="no_item_deselected">Aucun fond d\'écran désélectionné</string>
+    <string name="no_walls">Aucun fond d\'écran ajouté au fond d\'écran animé</string>
+    <string name="how_to_lw_title">Guide</string>
+    <string name="how_to_lw">Allez à l\'écran principal de Papuh et choisissez une catégorie. Ensuite, choisissez un fond d\'écran que vous aimez et sélectionnez-le</string>  <!-- Programmatically it will be "Then choose a wall you like and select 'Add to live wallpaper pool'" later -->
+    <string name="how_to_try">Essayer</string>
+    <string name="walls_count">fond(s) d\'écran ajouté(s) au fond d\'écran animé</string> <!-- Like "5 walls added to the live wallpaper pool" -->
+    <string name="theme_fab_addLW">Ajouter au bouton fond d\'écran animé</string>
     
 </resources>
