@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -87,7 +88,8 @@ public class MyWallsManager extends Activity {
                         @Override
                         public void onClick(MaterialDialog materialDialog, DialogAction dialogAction) {
                             removeWalls(uncheckedItems);
-                            gridAdapter.notifyDataSetChanged();
+                            gridAdapter = new GridAdapter(MyWallsManager.this, lwPoolWalls);
+                            gridView.setAdapter(gridAdapter);
 
                             checkIfEmpty();
 

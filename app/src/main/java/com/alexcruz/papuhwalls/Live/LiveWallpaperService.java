@@ -2,6 +2,7 @@ package com.alexcruz.papuhwalls.Live;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
+import android.app.WallpaperManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -9,8 +10,7 @@ import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
+import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Environment;
 import android.service.wallpaper.WallpaperService;
@@ -35,6 +35,7 @@ public class LiveWallpaperService extends WallpaperService {
     public static final String updateWallAction = "updateWall";
 
     private AlarmManager alarmManager;
+    private WallpaperManager wallpaperManager;
     private Intent intentAlarm;
     private PendingIntent pendingIntent;
 
@@ -57,6 +58,7 @@ public class LiveWallpaperService extends WallpaperService {
         IntentFilter iF = new IntentFilter(settingsChangedAction);
 
         alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        wallpaperManager = WallpaperManager.getInstance(this);
         intentAlarm = new Intent(this, AlarmReceiver.class);
         pendingIntent = PendingIntent.getBroadcast(this, Preferences.pendingIntentUnique, intentAlarm, PendingIntent.FLAG_UPDATE_CURRENT);
 
@@ -90,7 +92,7 @@ public class LiveWallpaperService extends WallpaperService {
         int updateInterval = preferences.LWinterval() * 1000;
 
         pendingIntent = PendingIntent.getBroadcast(this, Preferences.pendingIntentUnique, intentAlarm, PendingIntent.FLAG_UPDATE_CURRENT);
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(),
+        alarmManager.setInexactRepeating(AlarmManager.RTC, System.currentTimeMillis(),
                 updateInterval, pendingIntent);
 
     }
@@ -104,7 +106,7 @@ public class LiveWallpaperService extends WallpaperService {
 
     public class LiveWallEngine extends Engine {
 
-        private int height = 0, width = 0;
+        private int width = 0;
         private int currentPos = 0;
         private int xLength = 0;
         int wallWidth = 0;
@@ -117,7 +119,7 @@ public class LiveWallpaperService extends WallpaperService {
             public void onReceive(Context context, Intent intent) {
                 initLiveWallPool();
 
-                if(currentPos == liveWallPool.size())
+                if (currentPos == liveWallPool.size())
                     currentPos = 0;
                 setWallpaper();
                 currentPos++;
@@ -127,17 +129,24 @@ public class LiveWallpaperService extends WallpaperService {
         @Override
         public void onOffsetsChanged(float xOffset, float yOffset, float xOffsetStep, float yOffsetStep, int xPixelOffset, int yPixelOffset) {
             super.onOffsetsChanged(xOffset, yOffset, xOffsetStep, yOffsetStep, xPixelOffset, yPixelOffset);
-            if(currentWall != null) {
-                scrollWall((int) ((width - wallWidth) * xOffset));
+            int homeScreenCount = (int) (1 / xOffsetStep) + 1;
+            int length = currentWall.getWidth() - (homeScreenCount * width);
+            if(length > 0) {
+                xLength = -length / 2;
+                xLength += (int) ((width - currentWall.getWidth() - xLength) * xOffset) * 0.9;
             }
+            else
+                xLength = (int) (((width - currentWall.getWidth() - xLength) * xOffset) * 0.9);
+
+            scrollWall(xLength);
         }
 
-        private void initLiveWallPool(){
+        private void initLiveWallPool() {
             File saveWallLoc = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + getResources().getString(R.string.walls_save_location));
 
             File file[] = saveWallLoc.listFiles();
             for (File wall : file) {
-                if(wall.getName().startsWith("PapuhLive"))
+                if (wall.getName().startsWith("PapuhLive"))
                     liveWallPool.add(wall.getAbsolutePath());
             }
         }
@@ -151,7 +160,7 @@ public class LiveWallpaperService extends WallpaperService {
             IntentFilter intentFilter = new IntentFilter(updateWallAction);
             registerReceiver(updateWallReceiver, intentFilter);
 
-            if(currentPos == liveWallPool.size())
+            if (currentPos == liveWallPool.size())
                 currentPos = 0;
 
             setWallpaper();
@@ -177,21 +186,57 @@ public class LiveWallpaperService extends WallpaperService {
         public void onSurfaceChanged(SurfaceHolder holder, int format,
                                      int width, int height) {
             super.onSurfaceChanged(holder, format, width, height);
-            this.height = height;
             this.width = width;
             setWallpaper();
+            scrollWall(xLength);
         }
+
+        private int tapCount = 0;
+
+        @Override
+        public Bundle onCommand(String action, int x, int y, int z,
+                                Bundle extras, boolean resultRequested) {
+
+            if (action.equals("android.wallpaper.tap") & preferences.isTripleTapToJump()) {
+                tapCount++;
+                if(!isTimerRunning)
+                    tripleTapChecker.start();
+                isTimerRunning = true;
+            }
+            return super.onCommand(action, x, y, z, extras, resultRequested);
+        }
+
+        private boolean isTimerRunning = false;
+
+        private CountDownTimer tripleTapChecker = new CountDownTimer(500, 10) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                if(tapCount >=3){
+                    setWallpaper();
+                    currentPos++;
+                    tapCount = 0;
+                    isTimerRunning = false;
+                    this.cancel();
+                }
+            }
+
+            @Override
+            public void onFinish() {
+                tapCount = 0;
+                isTimerRunning = false;
+            }
+        };
 
         @Override
         public void onTouchEvent(MotionEvent event) {
-                super.onTouchEvent(event);
+            super.onTouchEvent(event);
         }
 
-        private void scrollWall(int offset){
+        private void scrollWall(int offset) {
             SurfaceHolder holder = getSurfaceHolder();
 
             Canvas canvas = holder.lockCanvas();
-            if(canvas != null) {
+            if (canvas != null) {
                 canvas.drawBitmap(currentWall, offset, 0, null);
                 holder.unlockCanvasAndPost(canvas);
             }
@@ -206,12 +251,19 @@ public class LiveWallpaperService extends WallpaperService {
                 Canvas canvas = holder.lockCanvas();
                 if (canvas != null) {
                     BitmapFactory.Options options = new BitmapFactory.Options();
-                    options.inPreferQualityOverSpeed = true;
+
+                    int height = wallpaperManager.getDesiredMinimumHeight();
+                    int width = wallpaperManager.getDesiredMinimumWidth();
+
+                    String currentWallPath = liveWallPool.get(currentPos);
+
+                    options.inJustDecodeBounds = true;
+                    BitmapFactory.decodeFile(currentWallPath, options);
+                    options.inJustDecodeBounds = false;
+                    options.inSampleSize = GridAdapter.calculateInSampleSize(options, width, height);
 
                     if (currentPos == liveWallPool.size())
                         currentPos = 0;
-
-                    String currentWallPath = liveWallPool.get(currentPos);
 
                     currentWall = BitmapFactory.decodeFile(currentWallPath, options);
 
@@ -229,14 +281,19 @@ public class LiveWallpaperService extends WallpaperService {
                         currentWall = Bitmap.createScaledBitmap(currentWall, (int) (wallWidth * resizeRatio), height, true);
                     }
 
-                    Paint paint = new Paint();
-                    paint.setColor(Color.TRANSPARENT);
+                    wallHeight = currentWall.getHeight();
 
-                    canvas.drawPaint(paint);
+                    if (wallHeight > height) {
+                        float resizeRatio = ((float) height) / wallHeight;
+                        currentWall = Bitmap.createScaledBitmap(currentWall, (int) (wallWidth * resizeRatio), height, true);
+                    }
+
+                    wallWidth = currentWall.getWidth();
+
                     canvas.drawBitmap(currentWall, xLength, 0, null);
                     holder.unlockCanvasAndPost(canvas);
                 }
-            } else if(isPreview()){
+            } else if (isPreview()) {
                 // let's try again in one second
                 new CountDownTimer(1000, 1000) {
                     @Override

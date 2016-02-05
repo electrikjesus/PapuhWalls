@@ -43,6 +43,7 @@ public class Preferences {
     public static final String NormalIcon = "NormalIcon";
     public static final String SelectedIcon = "SelectedIcon";
     public static final String LWinterval = "LWinterval";
+    public static final String LWtripleTapToJump = "LWtripleTapToJump";
 
     private static final int defaultUpdateInterval = 300;
     public static final int pendingIntentUnique = 0107621;
@@ -208,6 +209,14 @@ public class Preferences {
         getSharedPreferences().edit().putInt(LWinterval, seconds).apply();
     }
 
+    public void setLWtripleTapToJumpActivated(boolean activated){
+        getSharedPreferences().edit().putBoolean(LWtripleTapToJump, activated).apply();
+    }
+
+    public boolean isTripleTapToJump(){
+        return getSharedPreferences().getBoolean(LWtripleTapToJump, true);
+    }
+
     public static boolean isAppInstalled(Context context, String packageName) {
         try {
             context.getPackageManager().getApplicationInfo(packageName, 0);
@@ -291,9 +300,11 @@ public class Preferences {
         File saveWallLoc = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + context.getResources().getString(R.string.walls_save_location));
         ArrayList<String> liveWalls = new ArrayList<>();
         File file[] = saveWallLoc.listFiles();
-        for (File wall : file) {
-            if(wall.getName().startsWith("PapuhLive")){
-                liveWalls.add(wall.getAbsolutePath());
+        if(file != null) {
+            for (File wall : file) {
+                if (wall.getName().startsWith("PapuhLive")) {
+                    liveWalls.add(wall.getAbsolutePath());
+                }
             }
         }
         return liveWalls;

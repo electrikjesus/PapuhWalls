@@ -43,11 +43,11 @@
     <string name="first_slide_title">Willkommen zu Papuh!</string>
     <string name="first_slide_description">Hält dein Gerät stylisch!</string>
     <string name="second_slide_title">Ein Hintergrund der dir gefällt?</string>
-    <string name="second_slide_description">Ein klick und dein Hintergrund wird festgelegt!\n\nSo einfach! Keine Eile!</string>
-    <string name="third_slide_title">Dir gefällt das App-Aussehen nicht?</string>
-    <string name="third_slide_description">Besuche die Einstellungen und ändere es! Mit den integrierten Farb-Wechslern kannst du das Aussehen der App sofort verändern, solange bis Du vollkommen glücklich damit bist!</string>
-    <string name="fourth_slide_title">Du willst auch beitragen?</string>
-    <string name="fourth_slide_description">Alle Beiträge werden akzeptiert!\n\nKlein oder groß, es kommt der Community zu gunsten! Deshalb wird diese App immer gratis und open-source sein!</string>
+    <string name="second_slide_description">Ein Klick und dein Hintergrund wird festgelegt!\n\nSo einfach! So schnell!</string>
+    <string name="third_slide_title">Dir gefällt das Design der App nicht?</string>
+    <string name="third_slide_description">Besuche die Einstellungen und ändere es! Mit den integrierten Farb-Wechslern kannst du das Aussehen der App sofort verändern.. und das solange bis Du vollkommen glücklich damit bist!</string>
+    <string name="fourth_slide_title">Du willst auch etwas beitragen?</string>
+    <string name="fourth_slide_description">Alle Beiträge zu Papuh sind erwünscht!\n\nKlein oder groß, es kommt der Community zu gunsten! Deshalb wird diese App immer gratis und open-source sein!</string>
     <string name="last_slide_title">Das war\'s!</string>
     <string name="last_slide_description">Viel spaß mit der App :-)</string>
     <string name="customactivityoncrash_error_activity_error_occurred_explanation">UPS!!\n\nAlex muss auf dem Computer\neingeschlafen sein!\nBerichte ihm den Fehler!</string>
@@ -234,5 +234,6 @@
     <string name="how_to_try">Versuchen</string>
     <string name="walls_count">Hintergründe zum Live-Hintergrund Pool hinzugefügt</string>
     <string name="theme_fab_addLW">Live-Hintergrund Pool Taste</string>
-
+    <string name="apply_wall_title">Papuh Live festlegen</string>
+    <string name="triple_tap_to_jump">Drei mal auf den Hintergrund tippen, um diesen zu ändern</string>
 </resources>
