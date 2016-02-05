@@ -3,10 +3,13 @@ package com.alexcruz.papuhwalls.Live;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Point;
 import android.os.AsyncTask;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.ImageView;
@@ -54,7 +57,7 @@ public class GridAdapter extends BaseAdapter {
     public View getView(final int position, View convertView, ViewGroup parent) {
         View squareItem = convertView;
 
-        WallsHolder holder;
+        final WallsHolder holder;
         if (squareItem == null) {
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             squareItem = inflater.inflate(R.layout.wallpaper_item_manager, parent, false);
@@ -67,16 +70,32 @@ public class GridAdapter extends BaseAdapter {
         boolean isChecked = walls.get(position).isChecked();
         holder.selection.setChecked(isChecked);
 
+        WindowManager wm = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
+        Display display = wm.getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        int width = size.x;
+        final int imageWidth = (int) (width / 3);
+
         if(walls.size() > 0) {
 
             final WallsHolder finalHolder = holder;
             new AsyncTask<Void, Void, Void>() {
+                BitmapFactory.Options options = new BitmapFactory.Options();
                 Bitmap bmp = null;
 
                 @Override
                 protected Void doInBackground(Void... params) {
-                    bmp = BitmapFactory.decodeFile(walls.get(position).getPath());
-                    bmp = Bitmap.createScaledBitmap(bmp, bmp.getWidth() / 2, bmp.getHeight() / 2, false);
+                    options.inJustDecodeBounds = true;
+                    BitmapFactory.decodeFile(walls.get(position).getPath(), options);
+                    options.inSampleSize = calculateInSampleSize(options, imageWidth, imageWidth);
+                    options.inJustDecodeBounds = false;
+                    options.inPreferredConfig = Bitmap.Config.RGB_565;
+
+                    if(position < walls.size()) {
+                        bmp = BitmapFactory.decodeFile(walls.get(position).getPath(), options);
+                        bmp = Bitmap.createScaledBitmap(bmp, bmp.getWidth() / 2, bmp.getHeight() / 2, false);
+                    }
                     return null;
                 }
 
@@ -110,6 +129,28 @@ public class GridAdapter extends BaseAdapter {
             selection = (CheckBox) v.findViewById(R.id.selectionCb);
         }
 
+    }
+
+    public static int calculateInSampleSize(
+            BitmapFactory.Options options, int reqWidth, int reqHeight) {
+        final int height = options.outHeight;
+        final int width = options.outWidth;
+        int inSampleSize = 1;
+
+        if (height > reqHeight || width > reqWidth) {
+
+            final int halfHeight = height / 2;
+            final int halfWidth = width / 2;
+
+            // Calculate the largest inSampleSize value that is a power of 2 and keeps both
+            // height and width larger than the requested height and width.
+            while ((halfHeight / inSampleSize) > reqHeight
+                    && (halfWidth / inSampleSize) > reqWidth) {
+                inSampleSize *= 2;
+            }
+        }
+
+        return inSampleSize;
     }
 
 }

@@ -1,5 +1,6 @@
 package com.alexcruz.papuhwalls.Live;
 
+import android.app.WallpaperManager;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -9,6 +10,7 @@ import android.os.Environment;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
+import android.preference.SwitchPreference;
 import android.support.v4.content.IntentCompat;
 import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
@@ -22,6 +24,7 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.alexcruz.papuhwalls.MainActivity;
 import com.alexcruz.papuhwalls.Preferences;
 import com.alexcruz.papuhwalls.R;
+import com.jenzz.materialpreference.SwitchPreferenceThemeable;
 
 import java.io.File;
 import java.util.Arrays;
@@ -32,6 +35,10 @@ import java.util.Arrays;
 public class Settings extends PreferenceActivity {
 
     private static final String keyUpdateInterval = "LWinterval";
+    private static final String keyMyWalls = "MyWalls";
+    private static final String keyTripleTapToJump = "tripleTapToJump";
+    private static final String keyApplyWall = "ApplyWall";
+    private static final String keyHowTo = "HowTo";
 
     private com.jenzz.materialpreference.Preference mywalls;
 
@@ -83,8 +90,10 @@ public class Settings extends PreferenceActivity {
         com.alexcruz.papuhwalls.Preferences.themeMe(this, toolbar);
 
         final ListPreference updateInterval = (ListPreference)findPreference(keyUpdateInterval);
-        mywalls = (com.jenzz.materialpreference.Preference)findPreference("MyWalls");
-        final com.jenzz.materialpreference.Preference howTo = (com.jenzz.materialpreference.Preference)findPreference("HowTo");
+        mywalls = (com.jenzz.materialpreference.Preference)findPreference(keyMyWalls);
+        final SwitchPreference triple_tap_to_jump = (SwitchPreference)findPreference(keyTripleTapToJump);
+        final com.jenzz.materialpreference.Preference applyWall = (com.jenzz.materialpreference.Preference)findPreference(keyApplyWall);
+        final com.jenzz.materialpreference.Preference howTo = (com.jenzz.materialpreference.Preference)findPreference(keyHowTo);
 
         if(updateInterval != null){
             String minutes = getResources().getString(R.string.interval_minutes);
@@ -150,6 +159,40 @@ public class Settings extends PreferenceActivity {
             updateLWcount();
         }
 
+        if(triple_tap_to_jump != null){
+
+            boolean tripleTap = preferences.isTripleTapToJump();
+            triple_tap_to_jump.setChecked(tripleTap);
+
+            triple_tap_to_jump.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                @Override
+                public boolean onPreferenceChange(Preference preference, Object newValue) {
+                    boolean activated = Boolean.parseBoolean(String.valueOf(newValue));
+                        preferences.setLWtripleTapToJumpActivated(activated);
+                    return true;
+                }
+            });
+        }
+
+        if(applyWall != null)
+            applyWall.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    try{
+                        Intent intent = new Intent(WallpaperManager.ACTION_CHANGE_LIVE_WALLPAPER);
+                        intent.putExtra(WallpaperManager.EXTRA_LIVE_WALLPAPER_COMPONENT,
+                                new ComponentName(Settings.this, com.alexcruz.papuhwalls.Live.LiveWallpaperService.class));
+                        startActivity(intent);
+                    }
+                    catch(Exception e){
+                        Intent intent = new Intent();
+                        intent.setAction(WallpaperManager.ACTION_LIVE_WALLPAPER_CHOOSER);
+                        startActivity(intent);
+                    }
+                    return true;
+                }
+            });
+
         if(howTo != null){
             howTo.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
@@ -180,9 +223,11 @@ public class Settings extends PreferenceActivity {
         File saveWallLoc = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + getResources().getString(R.string.walls_save_location));
         int count = 0;
         File file[] = saveWallLoc.listFiles();
-        for (File wall : file) {
-            if(wall.getName().startsWith("PapuhLive")){
-                count++;
+        if(file!= null) {
+            for (File wall : file) {
+                if (wall.getName().startsWith("PapuhLive")) {
+                    count++;
+                }
             }
         }
 

@@ -11,7 +11,6 @@ public class AlarmReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-
         Intent updateBroadcast = new Intent(LiveWallpaperService.updateWallAction);
         context.sendBroadcast(updateBroadcast);
     }

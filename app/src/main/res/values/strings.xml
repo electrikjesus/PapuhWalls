@@ -382,5 +382,7 @@
     <string name="how_to_try">Try</string>
     <string name="walls_count">walls added to the live wallpaper pool</string> <!-- Like "5 walls added to the live wallpaper pool" -->
     <string name="theme_fab_addLW">Add to live wall pool Button</string>
+    <string name="apply_wall_title">Apply Papuh Live</string>
+    <string name="triple_tap_to_jump">Triple tap on the homescreen in order to jump to the next wallpaper</string>
 
 </resources>
