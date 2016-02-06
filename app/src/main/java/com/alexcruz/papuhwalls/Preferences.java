@@ -44,6 +44,7 @@ public class Preferences {
     public static final String SelectedIcon = "SelectedIcon";
     public static final String LWinterval = "LWinterval";
     public static final String LWtripleTapToJump = "LWtripleTapToJump";
+    public static final String gridCount = "gridCount";
 
     private static final int defaultUpdateInterval = 300;
     public static final int pendingIntentUnique = 0107621;
@@ -148,6 +149,14 @@ public class Preferences {
         return getSharedPreferences().getInt(LWinterval, defaultUpdateInterval);
     }
 
+    public int gridCount(){
+        return getSharedPreferences().getInt(gridCount, 2);
+    }
+
+    public void setGridCount(int count){
+        getSharedPreferencesEditor().putInt(gridCount, count).apply();
+    }
+
     String wall_name, wall_author, wall_url;
 
     public Preferences(String wall_name, String wall_author, String wall_url) {
@@ -187,6 +196,10 @@ public class Preferences {
         return context.getSharedPreferences(PREFERENCES_NAME, Context.MODE_PRIVATE);
     }
 
+    public SharedPreferences.Editor getSharedPreferencesEditor() {
+        return getSharedPreferences().edit();
+    }
+
     public boolean isRotateMinute() {
         return getSharedPreferences().getBoolean(ROTATE_MINUTE, false);
     }
@@ -198,19 +211,19 @@ public class Preferences {
     }
 
     public void setRotateTime(int time) {
-        getSharedPreferences().edit().putInt(ROTATE_TIME, time).apply();
+        getSharedPreferencesEditor().putInt(ROTATE_TIME, time).apply();
     }
 
     public void setRotateMinute(boolean bool) {
-        getSharedPreferences().edit().putBoolean(ROTATE_MINUTE, bool).apply();
+        getSharedPreferencesEditor().putBoolean(ROTATE_MINUTE, bool).apply();
     }
 
     public void setLWUpdateInterval(int seconds){
-        getSharedPreferences().edit().putInt(LWinterval, seconds).apply();
+        getSharedPreferencesEditor().putInt(LWinterval, seconds).apply();
     }
 
     public void setLWtripleTapToJumpActivated(boolean activated){
-        getSharedPreferences().edit().putBoolean(LWtripleTapToJump, activated).apply();
+        getSharedPreferencesEditor().putBoolean(LWtripleTapToJump, activated).apply();
     }
 
     public boolean isTripleTapToJump(){
