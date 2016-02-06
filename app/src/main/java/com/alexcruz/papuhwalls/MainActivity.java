@@ -21,6 +21,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.PermissionChecker;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -50,6 +51,7 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
@@ -966,14 +968,23 @@ public class MainActivity extends ActionBarActivity {
     }
 
     private void showGrid() {
+
+        final String[] numColumns = getResources().getStringArray(R.array.column);
+        int currentGridCount = Preferences.gridCount();
+        Log.e("efrasd", String.valueOf(currentGridCount));
+        int singleChoiceItemsIndex = Arrays.asList(numColumns).indexOf(String.valueOf(currentGridCount));
+
         new MaterialDialog.Builder(this)
         .title(getString(R.string.grid_count_dialog_title))
-        .items(R.array.column)
-        .itemsCallbackSingleChoice(0, new MaterialDialog.ListCallbackSingleChoice() {
+        .items(numColumns)
+        .itemsCallbackSingleChoice(singleChoiceItemsIndex, new MaterialDialog.ListCallbackSingleChoice() {
             @Override
             public boolean onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
 
-                AbsWalls.numColumns = which + 1;
+                int newGridCount = Integer.parseInt(numColumns[which]);
+                Log.e("efr", String.valueOf(newGridCount));
+                AbsWalls.numColumns = newGridCount;
+                Preferences.setGridCount(newGridCount);
                 refreshGridView();
                 /**
                  * If you use alwaysCallSingleChoiceCallback(), which is discussed below,
