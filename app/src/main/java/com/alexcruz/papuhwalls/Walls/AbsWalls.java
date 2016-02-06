@@ -16,6 +16,7 @@ import android.widget.GridView;
 import com.afollestad.materialdialogs.GravityEnum;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.alexcruz.papuhwalls.JSONParser;
+import com.alexcruz.papuhwalls.Preferences;
 import com.alexcruz.papuhwalls.R;
 import com.alexcruz.papuhwalls.WallsFragment;
 import com.alexcruz.papuhwalls.WallsGridAdapter;
@@ -35,14 +36,12 @@ public abstract class AbsWalls extends Fragment {
     public static String NAME = "name";
     public static String WALL = "wall";
     public static String AUTHOR = "author";
-    JSONObject jsonobject;
-    JSONArray jsonarray;
     GridView mGridView;
     WallsGridAdapter mGridAdapter;
     List<Map<String, String>> arraylist;
     private ViewGroup root;
     private Context context;
-    public static int numColumns;
+    public int numColumns;
 
     public abstract int getTitleId();
 
@@ -97,6 +96,7 @@ public abstract class AbsWalls extends Fragment {
         protected void onPostExecute(Void args) {
 
             mGridView = (GridView) root.findViewById(R.id.gridView);
+            numColumns = getNumColumns();
             mGridView.setNumColumns(numColumns);
             mGridAdapter = new WallsGridAdapter(context, arraylist, numColumns);
             mGridView.setAdapter(mGridAdapter);
@@ -128,8 +128,12 @@ public abstract class AbsWalls extends Fragment {
         }
     }
 
+    private int getNumColumns(){
+        return new Preferences(context).gridCount();
+    }
+
     public void updateGridView() {
-        mGridView.setNumColumns(numColumns);
+        mGridView.setNumColumns(getNumColumns());
         mGridView.startLayoutAnimation();
     }
 }

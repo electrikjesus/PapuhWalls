@@ -13,7 +13,6 @@ public class Papuh extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Intent intent = new Intent(Papuh.this, MainActivity.class);
-        AbsWalls.numColumns = 2;
         startActivity(intent);
     }
 }
