@@ -971,7 +971,6 @@ public class MainActivity extends ActionBarActivity {
 
         final String[] numColumns = getResources().getStringArray(R.array.column);
         int currentGridCount = Preferences.gridCount();
-        Log.e("efrasd", String.valueOf(currentGridCount));
         int singleChoiceItemsIndex = Arrays.asList(numColumns).indexOf(String.valueOf(currentGridCount));
 
         new MaterialDialog.Builder(this)
@@ -982,8 +981,6 @@ public class MainActivity extends ActionBarActivity {
             public boolean onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
 
                 int newGridCount = Integer.parseInt(numColumns[which]);
-                Log.e("efr", String.valueOf(newGridCount));
-                AbsWalls.numColumns = newGridCount;
                 Preferences.setGridCount(newGridCount);
                 refreshGridView();
                 /**
