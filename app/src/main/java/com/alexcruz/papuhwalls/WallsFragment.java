@@ -22,6 +22,7 @@ import android.widget.ImageView;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.alexcruz.papuhwalls.Live.GridAdapter;
 import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.getbase.floatingactionbutton.FloatingActionsMenu;
 import com.github.mrengineer13.snackbar.SnackBar;
@@ -93,6 +94,8 @@ public class WallsFragment extends ActionBarActivity {
 
         }
 
+        final WallpaperManager wm = WallpaperManager.getInstance(context);
+
         setFullScreen();
 
         scan(this, "external");
@@ -112,13 +115,21 @@ public class WallsFragment extends ActionBarActivity {
 
                 BitmapFactory.Options options = new BitmapFactory.Options();
 
+                int wallpaperManagerHeight = wm.getDesiredMinimumHeight();
+                int wallpaperManagerWidth = wm.getDesiredMinimumWidth();
+
+                options.inJustDecodeBounds = true;
+                BitmapFactory.decodeFile(uri.getPath(), options);
+                options.inJustDecodeBounds = false;
+                options.inSampleSize = GridAdapter.calculateInSampleSize(options, wallpaperManagerWidth, wallpaperManagerHeight);
+
                 Bitmap bitmap = BitmapFactory.decodeFile(uri.getPath(), options);
 
                 //If bitmap height is bigger that device's - resize it
                 int height = bitmap.getHeight();
                 int width = bitmap.getWidth();
 
-                //Get imageview (device in this case) height
+                //Get imageView (device in this case) height
                 int imageViewHeight = image.getHeight();
 
                 if (height > imageViewHeight) {
@@ -127,7 +138,9 @@ public class WallsFragment extends ActionBarActivity {
 
                     Bitmap newBitmap = Bitmap.createScaledBitmap(bitmap, (int) (width * resizeRatio), imageViewHeight, false);
 
-                    bitmap.recycle();
+                    if (bitmap!= newBitmap){
+                        bitmap.recycle();
+                    }
 
                     image.setImageBitmap(newBitmap);
                 } else {
@@ -174,7 +187,6 @@ public class WallsFragment extends ActionBarActivity {
                     @Override
                     public void callback(Uri object) {
                         try {
-                            WallpaperManager wm = WallpaperManager.getInstance(context);
                             wm.setStream(context.getContentResolver().openInputStream(object));
                             fab.collapse();
 
