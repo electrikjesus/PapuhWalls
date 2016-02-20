@@ -7,9 +7,12 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Environment;
@@ -22,6 +25,8 @@ import com.alexcruz.papuhwalls.Preferences;
 import com.alexcruz.papuhwalls.R;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.RandomAccessFile;
 import java.util.ArrayList;
 
 /**
@@ -104,9 +109,15 @@ public class LiveWallpaperService extends WallpaperService {
         }
     };
 
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+
+    }
+
     public class LiveWallEngine extends Engine {
 
-        private int width = 0;
+        private int width = 0, height = 0;
         private int currentPos = 0;
         private int xLength = 0;
         int wallWidth = 0;
@@ -179,7 +190,7 @@ public class LiveWallpaperService extends WallpaperService {
         @Override
         public void onSurfaceDestroyed(SurfaceHolder holder) {
             super.onSurfaceDestroyed(holder);
-
+            engine.refreshScreen();
         }
 
         @Override
@@ -187,6 +198,12 @@ public class LiveWallpaperService extends WallpaperService {
                                      int width, int height) {
             super.onSurfaceChanged(holder, format, width, height);
             this.width = width;
+            this.height = height;
+            setWallpaper();
+            scrollWall(xLength);
+        }
+
+        private void refreshScreen(){
             setWallpaper();
             scrollWall(xLength);
         }
@@ -238,6 +255,7 @@ public class LiveWallpaperService extends WallpaperService {
             Canvas canvas = holder.lockCanvas();
             if (canvas != null) {
                 canvas.drawBitmap(currentWall, offset, 0, null);
+
                 holder.unlockCanvasAndPost(canvas);
             }
         }
@@ -291,6 +309,7 @@ public class LiveWallpaperService extends WallpaperService {
                     wallWidth = currentWall.getWidth();
 
                     canvas.drawBitmap(currentWall, xLength, 0, null);
+
                     holder.unlockCanvasAndPost(canvas);
                 }
             } else if (isPreview()) {
@@ -308,6 +327,19 @@ public class LiveWallpaperService extends WallpaperService {
                     }
                 }.start();
             }
+        }
+
+        /*
+            Just an idea, adding some notes to the homescreen
+         */
+        private void drawText(Canvas canvas){
+            Paint paint = new Paint();
+            paint.setColor(Color.WHITE);
+            paint.setTextSize(70);
+            canvas.drawText("Notes", 50, height * 2 / 3, paint);
+            paint.setTextSize(50);
+            canvas.drawText("Call guy XY", 50, height * 2 / 3 + 80, paint);
+            canvas.drawText("Go and do some sport bastard", 50, height * 2 / 3 + 80 + 60, paint);
         }
     }
 }
