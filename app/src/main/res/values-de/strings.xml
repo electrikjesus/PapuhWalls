@@ -107,7 +107,7 @@
     <string name="time_context_headers">Zeitlich kontextbezogene Bilder</string>
     <string name="enable_time_context_headers_summary">Aktiviere zeitlich kontextbezogene Bilder</string>
     <string name="disable_time_context_headers_summary">Deaktiviere zeitlich kontextbezogene Bilder</string>
-    <string name="poly_time_context_headers">(Mehrere) kKontextbezogene Bilder</string>
+    <string name="poly_time_context_headers">(Mehrere) kontextbezogene Bilder</string>
     <string name="notify">Hintergrund Benachrichtigungen</string>
     <string name="notify_content">Erhalte Benachrichtigungen, wenn neue Hintergründe hinzugefügt wurden. \n\nPapuh\'s Benachrichtigungssystem abonnieren.</string>
     <string name="notify_note"><b>Achtung : Pushbullet ist nötig, um Benachrichtigungen erhalten zu können.</b></string>
@@ -217,7 +217,7 @@
     <string name="remFromLiveWallList">Vom Live-Hintergrund Pool entfernen</string>
     <string name="live_wallpaper_description">Papuh Live</string>
     <string name="live_wall_update_interval">Aktualisierungs-Intervall</string>
-    <string name="live_wall_pool_update_success">Der Live-Hintergund Pool wurde erfolgreich aktualisiert</string>
+    <string name="live_wall_pool_update_success">Der Live-Hintergrund Pool wurde erfolgreich aktualisiert</string>
     <string name="live_wallpaper_settings">Papuh Live Einstellungen</string>
     <string name="interval_minutes">Minuten</string>
     <string name="interval_minute">Minute</string>
