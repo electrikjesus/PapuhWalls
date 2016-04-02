@@ -254,8 +254,8 @@ public class MainActivity extends ActionBarActivity {
         headerResult = new AccountHeaderBuilder()
                 .withActivity(this)
                 .withHeaderBackground(header)
-                .withSelectionFirstLine(getResources().getString(R.string.app_long_name) + versionName)
-                .withSelectionSecondLine(getResources().getString(R.string.app_dev_name))
+                .withSelectionFirstLine(getResources().getString(R.string.app_long_name))
+                .withSelectionSecondLine("v" + versionName)
                 .withSelectionListEnabledForSingleProfile(false)
                 .addProfiles(
                         profile
@@ -974,8 +974,8 @@ public class MainActivity extends ActionBarActivity {
         int singleChoiceItemsIndex = Arrays.asList(numColumns).indexOf(String.valueOf(currentGridCount));
 
         new MaterialDialog.Builder(this)
-        .title(getString(R.string.grid_count_dialog_title))
-        .items(numColumns)
+                .title(getString(R.string.grid_count_dialog_title))
+                .items(numColumns)
         .itemsCallbackSingleChoice(singleChoiceItemsIndex, new MaterialDialog.ListCallbackSingleChoice() {
             @Override
             public boolean onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
@@ -991,7 +991,7 @@ public class MainActivity extends ActionBarActivity {
             }
         })
         .positiveText(R.string.grid_count_dialog_btn_positive)
-        .show();
+                .show();
     }
 
     private void changelog() {

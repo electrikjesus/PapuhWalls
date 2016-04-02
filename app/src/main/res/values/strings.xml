@@ -4,15 +4,14 @@
     <!-- Main -->
     <string name="app_name" translatable="false">Papuh</string>
     <string name="package_name" translatable="false">com.alexcruz.papuh</string>
-    <string name="app_long_name" translatable="false">Papuh Walls v</string>
-    <string name="app_dev_name">by Alex Cruz</string>
+    <string name="app_long_name" translatable="false">Papuh Walls</string>
     <string name="email_address" translatable="false">mazdarider23@gmail.com</string>
     <string name="play_store_link" translatable="false">https://play.google.com/store/apps/details?id=com.alexcruz.papuh</string>
     <string name="googleplus_link" translatable="false">https://plus.google.com/u/0/communities/117004088255020338497</string>
     <string name="title" translatable="false">Papuh Walls</string>
     <string name="gplus_join">JOIN</string>
     <string name="ratebtn">RATE</string>
-    <string name="description">Papuh was created by Alex Cruz to not only provide a central location for all his wallpapers but also to easily update them for those that use them. This app was built using open source libraries and contributions to the open source community.</string>
+    <string name="description">Papuh was created to not only provide a central location for all of Alex Cruz\'s wallpapers but also to easily update them for those that use them. This app was built using open source libraries and contributions to the open source community.</string>
     <string name="play_card_title">Papuh Walls on Google Plus</string>
     <string name="play_card_content">Join the Papuh Walls community for support and to share</string>
     <string name="section_home">Home</string>
@@ -259,7 +258,7 @@
         The dashboard app linked under <b>SOURCE</b> was used as a base for this app and developed by <b>Jahir Fiquitiva</b>
         :" Graphic Design and Android Development enthusiast.<br><br>Official collaborators: Aidan Follestad and Joaquin Cuitiño.<br><br>
 
-        Since then <b>A LOT</b> of work by <b>Alex Cruz</b> has gone into this app to make it something more then just a fork
+        Since then <b>A LOT</b> of work by <b>Alex Cruz</b>, <b>Andrzej Ressel</b> and <b>Daniel Huber</b> has gone into this app to make it something more than just a fork
         ]]>
 
     </string>
