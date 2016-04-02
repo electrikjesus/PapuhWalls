@@ -11,6 +11,7 @@ import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 
@@ -41,6 +42,10 @@ public class Credits extends Fragment {
         TextView credit_desc = (TextView) root.findViewById(R.id.credit_desc);
         credit_desc.setText(Html.fromHtml(getString(R.string.credit_desc)));
         credit_desc.setTextColor(Preferences.SecondaryText());
+
+        //Papuh developers text
+        TextView papuhdeveopers_text = (TextView) root.findViewById(R.id.papuhdevelopers_text);
+        papuhdeveopers_text.setTextColor(Preferences.PrimaryText());
 
         //Free and open source text
         TextView freeandopensource_text = (TextView) root.findViewById(R.id.freeandopensource_text);
@@ -200,13 +205,41 @@ public class Credits extends Fragment {
         TextView libtwelve_author = (TextView) root.findViewById(R.id.libtwelve_author);
         libtwelve_author.setTextColor(Preferences.SecondaryText());
 
+        //Papuh Developers
+        ImageView alexcover = (ImageView) root.findViewById(R.id.alexcover);
+        alexcover.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent alexcover = new Intent(Intent.ACTION_VIEW, Uri.parse(getResources().getString(R.string.alex_link)));
+                startActivity(alexcover);
+            }
+        });
+
+        ImageView andrzejcover = (ImageView) root.findViewById(R.id.andrzejcover);
+        andrzejcover.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent andrzejcover = new Intent(Intent.ACTION_VIEW, Uri.parse(getResources().getString(R.string.andrzej_link)));
+                startActivity(andrzejcover);
+            }
+        });
+
+        ImageView danielcover = (ImageView) root.findViewById(R.id.danielcover);
+        danielcover.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent danielcover = new Intent(Intent.ACTION_VIEW, Uri.parse(getResources().getString(R.string.daniel_link)));
+                startActivity(danielcover);
+            }
+        });
+
         //Library source buttons
         TextView credit = (TextView) root.findViewById(R.id.github_button);
         credit.setTextColor(Preferences.Accent());
         credit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent credit = new Intent(Intent.ACTION_VIEW, Uri.parse(getResources().getString(R.string.jahir_link)));
+                Intent credit = new Intent(Intent.ACTION_VIEW, Uri.parse(getResources().getString(R.string.paperboard_link)));
                 startActivity(credit);
             }
         });
@@ -320,7 +353,6 @@ public class Credits extends Fragment {
                 startActivity(licensesdialog_web);
             }
         });
-
         return root;
     }
 

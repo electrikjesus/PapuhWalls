@@ -8,6 +8,9 @@
     <string name="email_address" translatable="false">mazdarider23@gmail.com</string>
     <string name="play_store_link" translatable="false">https://play.google.com/store/apps/details?id=com.alexcruz.papuh</string>
     <string name="googleplus_link" translatable="false">https://plus.google.com/u/0/communities/117004088255020338497</string>
+    <string name="alex_link" translatable="false">https://plus.google.com/u/0/+AlexCruz</string>
+    <string name="andrzej_link" translatable="false">https://plus.google.com/u/0/117376207394302665227</string>
+    <string name="daniel_link" translatable="false">https://plus.google.com/u/0/+DanielHubergplus</string>
     <string name="title" translatable="false">Papuh Walls</string>
     <string name="gplus_join">JOIN</string>
     <string name="ratebtn">RATE</string>
@@ -129,6 +132,17 @@
     <string name="credit_wallpaper">Wallpaper contributed by</string>
     <string name="press_color_to_apply">Click to apply</string>
     <string name="dialog_color_picker">Color Picker</string>
+
+    <string name="developers_title">Papuh Developers</string>
+    <string name="alexcruz" translatable="false">Alex Cruz</string>
+    <string name="alexcruz_summary">Husband, Father, Android Developer, Geek, Linux enthusiast and lover of all things tech!</string>
+
+    <string name="andrzejressel" translatable="false">Andrzej Ressel</string>
+    <string name="andrzejressel_summary" translatable="false">Android developer and contributor involved in multiple open source projects such as Layers and Dirty Unicorns</string>
+
+    <string name="danielhuber" translatable="false">Daniel Huber</string>
+    <string name="danielhuber_summary" translatable="false">Developer of many Android apps such as ROM Settings Backup, Music Everywhere and Floating Music Widget</string>
+
 
     <!-- Changelog -->
     <!-- Initial Release -->
@@ -255,20 +269,17 @@
     <string name="credit_title">Credit where is due...</string>
     <string name="credit_desc">
         <![CDATA[
-        The dashboard app linked under <b>SOURCE</b> was used as a base for this app and developed by <b>Jahir Fiquitiva</b>
-        :" Graphic Design and Android Development enthusiast.<br><br>Official collaborators: Aidan Follestad and Joaquin Cuitiño.<br><br>
-
-        Since then <b>A LOT</b> of work by <b>Alex Cruz</b>, <b>Andrzej Ressel</b> and <b>Daniel Huber</b> has gone into this app to make it something more than just a fork
+        The dashboard app linked under <b>SOURCE</b> was used as a base for this app and developed by <b>Jahir Fiquitiva</b><br>
         ]]>
 
     </string>
-    <string name="jahir_link" translatable="false">https://github.com/jahirfiquitiva</string>
+    <string name="paperboard_link" translatable="false">https://github.com/Mazda--/PaperBoard-Final</string>
 
     <string name="copyright">Licensed under MIT License.</string>
     <string name="apache_license">Licensed under Apache 2.0 License.</string>
     <string name="mit_license">Licensed under MIT License.</string>
 
-    <string name="libs_section_title">Free &amp; Open Sourced libraries used:</string>
+    <string name="libs_section_title">Free &amp; Open Sourced libraries</string>
 
     <string name="fab_author" translatable="false">Future Simple - Melnykov</string>
     <string name="fab_web" translatable="false">https://github.com/futuresimple/android-floating-action-button</string>

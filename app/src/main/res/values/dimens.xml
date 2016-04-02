@@ -18,7 +18,7 @@
     <dimen name="mini_margin">2dp</dimen>
     <dimen name="cards_margin">12dp</dimen>
     <dimen name="finalcard_margin">14dp</dimen>
-    <dimen name="cards_elevation">3dp</dimen>
+    <dimen name="cards_elevation">2dp</dimen>
     <dimen name="cards_padding">16dp</dimen>
     <dimen name="cards_text_margin">5dp</dimen>
     <dimen name="card_corner_radius">2dp</dimen>
@@ -53,11 +53,11 @@
     <dimen name="cardview_default_elevation">2dp</dimen>
     <!-- Inset shadow for RoundRectDrawableWithShadow. It is used to avoid gaps between the card
      and the shadow. -->
-    <dimen name="cardview_compat_inset_shadow">1dp</dimen>
+    <dimen name="cardview_compat_inset_shadow">2dp</dimen>
 
-    <dimen name="ambilwarna_hsvHeight">200dp</dimen>
-    <dimen name="ambilwarna_hsvWidth">200dp</dimen>
-    <dimen name="ambilwarna_hueWidth">20dp</dimen>
-    <dimen name="ambilwarna_spacer">4dp</dimen>
+    <dimen name="content_inset_half">8dp</dimen>
+    <dimen name="content_inset">16dp</dimen>
+    <dimen name="header_text_size">22sp</dimen>
+    <dimen name="content_text_size">12sp</dimen>
 
 </resources>

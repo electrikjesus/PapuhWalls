@@ -62,7 +62,7 @@
     <color name="background_material_dark">#80000000</color>
 
     <!-- Shadow color for the first pixels around CardView. -->
-    <color name="cardview_shadow_start_color">#27000000</color>
+    <color name="cardview_shadow_start_color">#17000000</color>
     <!-- Shadow color for the furthest pixels around CardView. -->
     <color name="cardview_shadow_end_color">#03000000</color>
 
