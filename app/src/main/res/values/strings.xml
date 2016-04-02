@@ -127,9 +127,9 @@
     <string name="grid_changer_column_four">4 Columns</string>
     <string name="grid_count_dialog_title">Grid count</string>
     <string name="grid_count_dialog_btn_positive">Set</string>
-
     <string name="credit_wallpaper">Wallpaper contributed by</string>
-
+    <string name="press_color_to_apply">Click to apply</string>
+    <string name="dialog_color_picker">Color Picker</string>
 
     <!-- Changelog -->
     <!-- Initial Release -->

@@ -7,8 +7,9 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.alexcruz.papuhwalls.Preferences;
+import com.colorpicker.ColorPickerPreference;
 
-public class AmbilWarnaPreferenceThemeable extends AmbilWarnaPreference {
+public class AmbilWarnaPreferenceThemeable extends ColorPickerPreference {
 
     public AmbilWarnaPreferenceThemeable(Context context, AttributeSet attrs) {
         super(context, attrs);

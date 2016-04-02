@@ -20,12 +20,11 @@
         <com.jenzz.materialpreference.PreferenceCategoryThemeable
             android:title="@string/theme_settings" />
 
-        <yuku.ambilwarna.widget.AmbilWarnaPreferenceThemeable
+        <com.colorpicker.ColorPickerPreference
             android:key="Theme"
             android:title="@string/theme_toolbar_title"
             android:summary="@string/theme_toolbar_summary"
-            android:defaultValue="@color/primary"
-            app:supportsAlpha="true"/>
+            android:defaultValue="@color/primary"/>
 
         <com.jenzz.materialpreference.SwitchPreferenceThemeable
             android:key="StatusBarTint"
@@ -38,8 +37,7 @@
             android:key="NavBarTheme"
             android:title="@string/theme_navbar_title"
             android:summary="@string/theme_navbar_summary"
-            android:defaultValue="@color/primary"
-            app:supportsAlpha="true"/>
+            android:defaultValue="@color/primary"/>
 
         <com.jenzz.materialpreference.SwitchPreferenceThemeable
             android:key="NavigationTint"
@@ -52,8 +50,7 @@
             android:key="Background"
             android:title="@string/theme_background_theme_title"
             android:summary="@string/theme_background_theme_summary"
-            android:defaultValue="@color/navigation_drawer_color"
-            app:supportsAlpha="true"/>
+            android:defaultValue="@color/navigation_drawer_color"/>
 
         <yuku.ambilwarna.widget.AmbilWarnaPreferenceThemeable
             android:key="PrimaryText"
@@ -80,55 +77,47 @@
             android:key="Drawer"
             android:title="@string/theme_drawer_theme_title"
             android:summary="@string/theme_drawer_theme_summary"
-            android:defaultValue="@color/navigation_drawer_color"
-            app:supportsAlpha="true"/>
+            android:defaultValue="@color/navigation_drawer_color"/>
 
         <yuku.ambilwarna.widget.AmbilWarnaPreferenceThemeable
             android:key="NormalIcon"
             android:title="@string/theme_drawer_normal_icon"
-            android:defaultValue="@color/white"
-            app:supportsAlpha="true"/>
+            android:defaultValue="@color/white"/>
 
         <yuku.ambilwarna.widget.AmbilWarnaPreferenceThemeable
             android:key="SelectedIcon"
             android:title="@string/theme_drawer_selected_icon"
-            android:defaultValue="@color/primary"
-            app:supportsAlpha="true"/>
+            android:defaultValue="@color/primary"/>
 
         <yuku.ambilwarna.widget.AmbilWarnaPreferenceThemeable
             android:key="DrawerText"
             android:title="@string/theme_drawer_text_theme_title"
             android:summary="@string/theme_drawer_text_theme_summary"
-            android:defaultValue="@color/white"
-            app:supportsAlpha="true"/>
+            android:defaultValue="@color/white"/>
 
         <yuku.ambilwarna.widget.AmbilWarnaPreferenceThemeable
             android:key="SelectedDrawerText"
             android:title="@string/theme_drawer_selected_text_theme_title"
             android:summary="@string/theme_drawer_selected_text_theme_summary"
-            android:defaultValue="@color/white"
-            app:supportsAlpha="true"/>
+            android:defaultValue="@color/white"/>
 
         <yuku.ambilwarna.widget.AmbilWarnaPreferenceThemeable
             android:key="DrawerSelector"
             android:title="@string/theme_drawer_selector_theme_title"
             android:summary="@string/theme_drawer_selector_theme_summary"
-            android:defaultValue="@color/selector_drawer_color"
-            app:supportsAlpha="true"/>
+            android:defaultValue="@color/selector_drawer_color"/>
 
         <yuku.ambilwarna.widget.AmbilWarnaPreferenceThemeable
             android:key="BadgeBackground"
             android:title="@string/theme_badge_background_theme_title"
             android:summary="@string/theme_badge_background_theme_summary"
-            android:defaultValue="@color/primary"
-            app:supportsAlpha="true"/>
+            android:defaultValue="@color/primary"/>
 
         <yuku.ambilwarna.widget.AmbilWarnaPreferenceThemeable
             android:key="BadgeText"
             android:title="@string/theme_badge_text_theme_title"
             android:summary="@string/theme_badge_text_theme_summary"
-            android:defaultValue="@color/white"
-            app:supportsAlpha="true"/>
+            android:defaultValue="@color/white"/>
 
         <com.jenzz.materialpreference.PreferenceCategoryThemeable
             android:title="@string/theme_wallpaper_fab_settings" />
@@ -136,51 +125,43 @@
         <yuku.ambilwarna.widget.AmbilWarnaPreferenceThemeable
             android:key="FABapply"
             android:title="@string/theme_fab_apply"
-            android:defaultValue="@color/apply_color"
-            app:supportsAlpha="true"/>
+            android:defaultValue="@color/apply_color"/>
 
         <yuku.ambilwarna.widget.AmbilWarnaPreferenceThemeable
             android:key="FABsave"
             android:title="@string/theme_fab_save"
-            android:defaultValue="@color/save_color"
-            app:supportsAlpha="true"/>
+            android:defaultValue="@color/save_color"/>
 
         <yuku.ambilwarna.widget.AmbilWarnaPreferenceThemeable
             android:key="FABaddLW"
             android:title="@string/theme_fab_addLW"
-            android:defaultValue="@color/add_lw_color"
-            app:supportsAlpha="true"/>
+            android:defaultValue="@color/add_lw_color"/>
 
         <yuku.ambilwarna.widget.AmbilWarnaPreferenceThemeable
             android:key="FABcrop"
             android:title="@string/theme_fab_crop"
-            android:defaultValue="@color/crop_color"
-            app:supportsAlpha="true"/>
+            android:defaultValue="@color/crop_color"/>
 
         <yuku.ambilwarna.widget.AmbilWarnaPreferenceThemeable
             android:key="FABedit"
             android:title="@string/theme_fab_edit"
-            android:defaultValue="@color/edit_color"
-            app:supportsAlpha="true"/>
+            android:defaultValue="@color/edit_color"/>
 
         <yuku.ambilwarna.widget.AmbilWarnaPreferenceThemeable
             android:key="FABshare"
             android:title="@string/theme_fab_share"
-            android:defaultValue="@color/share_color"
-            app:supportsAlpha="true"/>
+            android:defaultValue="@color/share_color"/>
 
         <yuku.ambilwarna.widget.AmbilWarnaPreferenceThemeable
             android:key="FABpressed"
             android:title="@string/theme_fab_pressed"
             android:summary="@string/theme_fab_pressed_summary"
-            android:defaultValue="@color/primary"
-            app:supportsAlpha="true"/>
+            android:defaultValue="@color/primary"/>
 
         <yuku.ambilwarna.widget.AmbilWarnaPreferenceThemeable
             android:key="FABbackground"
             android:title="@string/theme_fab_background"
             android:summary="@string/theme_fab_background_summary"
-            android:defaultValue="@color/black_semi_transparent"
-            app:supportsAlpha="true"/>
+            android:defaultValue="@color/black_semi_transparent"/>
 
 </PreferenceScreen>
