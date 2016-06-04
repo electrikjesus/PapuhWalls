@@ -3,21 +3,21 @@ package com.alexcruz.papuhwalls.Walls;
 import com.alexcruz.papuhwalls.R;
 
 
-public class AicpWalls extends AbsWalls {
+public class BlissWalls extends AbsWalls {
 
     @Override
     public int getTitleId() {
-        return R.string.section_aicp_walls;
+        return R.string.section_bliss_walls;
     }
 
     @Override
     public int getUrlId() {
-        return R.string.json_aicpwalls_url;
+        return R.string.json_blisswalls_url;
     }
 
     @Override
     public String getJsonArrayName() {
-        return "aicp_walls";
+        return "bliss_walls";
     }
 
 }
